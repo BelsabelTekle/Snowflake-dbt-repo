@@ -1,3 +1,10 @@
 
+
 name: 'my_new_project'
-model-paths: ["sql_models"]
+model-paths: ["models"]
+seed-paths: ["seeds"]
+analysis-paths: ["analyses"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+
+

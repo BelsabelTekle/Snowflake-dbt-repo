@@ -1,0 +1,43 @@
+sources:
+  - name: "bels_sources"
+    database: "DB_ECOMM"
+    schema: "SC_ECOMM"
+    tables:
+      - name: "SALES"
+      - name: "USERS"
+      - name: "PAYMENT_MODES"
+      - name: "ORDERS"
+      - name: "DIM_SALES"
+      - name: "SCD_EG"
+      - name: "PII_RAM"
+      - name: "MARKETING"
+
+models:
+  - name: "pii"
+    columns:
+      - name: ID
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              field: ID
+              to: ref('pii2')
+      - name: Gender
+        tests:
+          - accepted_values:
+              values: ['M','F']
+  - name: "marketing_stg"
+    columns:
+      - name: SALES
+        tests:
+          - new_test
+          - SALES
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+              max_value: 3000000
+
+
+
+          
+
+
